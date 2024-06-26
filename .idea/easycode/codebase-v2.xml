@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="com.obiscr.chatgpt.settings.EasyCodeState">
+    <option name="projectFiles" value="$PROJECT_DIR$/public/index.html;Q:/modsenpractice/src/components/Favorites/Favorites.tsx;Q:/modsenpractice/src/components/Map/Map.tsx;Q:/modsenpractice/src/components/PlaceDetails/PlaceDetails.tsx;Q:/modsenpractice/src/store/favoritesSlice.ts;Q:/modsenpractice/src/store/index.ts;Q:/modsenpractice/src/store/userSlice.ts;Q:/modsenpractice/src/utils/services/directionsService.ts;Q:/modsenpractice/src/utils/services/placesService.ts;Q:/modsenpractice/src/App.css;Q:/modsenpractice/src/App.tsx;Q:/modsenpractice/src/index.css;Q:/modsenpractice/src/index.tsx;Q:/modsenpractice/package-lock.json;Q:/modsenpractice/package.json;Q:/modsenpractice/README.md;Q:/modsenpractice/tsconfig.json" />
+  </component>
+</project>
