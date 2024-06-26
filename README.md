@@ -1,46 +1,49 @@
-# Getting Started with Create React App
+# FIO
+Бекиш Александр Сергеевич
+# Deploy
+https://modsen-practice-umber.vercel.app
+# Task
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. Создайте компонент "Map" для отображения карты с маркерами достопримечательностей.
 
-## Available Scripts
+2. Реализуйте возможность получения геопозиции пользователя и центрирования карты на этой позиции.
 
-In the project directory, you can run:
+3. Добавьте функциональность для поиска достопримечательностей в выбранном радиусе (например, 1 км) и отображения их на карте.
 
-### `npm start`
+4. Реализуйте функциональность для фильтрации достопримечательностей по категориям (например, музеи, парки, рестораны и т.д.).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+5. Добавьте возможность отображения дополнительной информации о выбранной достопримечательности (название, адрес, описание, фотографии и т.д.).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+6. Реализуйте функциональность добавления достопримечательности в избранное и отображения списка избранных мест.
 
-### `npm test`
+7. Добавьте возможность отображения маршрута до выбранной достопримечательности и расчета времени и расстояния до неё.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Требования:
 
-### `npm run build`
+1. Приложение должно быть реализовано с использованием React и любой удобной для вас библиотеки для работы с картами, например, Google Maps API.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Приложение должно иметь отзывчивый дизайн и быть доступным для использования на разных устройствах, включая мобильные устройства.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Приложение должно иметь возможность регистрации и аутентификации пользователей.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Приложение должно иметь возможность сохранения данных о выбранных местах и просмотре их позже.
 
-### `npm run eject`
+## Технологии:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. React (с использованием React Hooks и контекста, если это необходимо).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Библиотека для работы с картами, например, Google Maps API или Leaflet.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+3. CSS-фреймворк, такой как Bootstrap или Material UI для быстрого создания отзывчивого дизайна.
+ 
+4. Firebase или другой сервис для хранения данных пользователей и избранных мест.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Также может быть полезным использование следующих технологий:
 
-## Learn More
+1. Redux для управления состоянием приложения.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Axios для выполнения запросов к API.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. React Router для реализации навигации между страницами.
+
+4. TypeScript для обеспечения типизации и снижения количества ошибок в коде.
