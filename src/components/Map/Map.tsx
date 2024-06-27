@@ -6,16 +6,44 @@ import FilterPanel from '../FilterPanel/FilterPanel';
 import restaurantMarker from '../../assets/icons/food.png';
 import parkMarker from '../../assets/icons/nature.png';
 import museumMarker from '../../assets/icons/culture.png';
+import './Map.css';
 
 
 export type PlaceType = 'restaurant' | 'museum' | 'park';
-
 
 const categoryIconMap: { [key: string]: string } = {
     restaurant: restaurantMarker,
     park: parkMarker,
     museum: museumMarker,
 };
+
+const mapStyles = [
+    {
+        featureType: 'poi',
+        elementType: 'labels',
+        stylers: [{ visibility: 'off' }]
+    },
+    {
+        featureType: 'transit.station',
+        elementType: 'labels.icon',
+        stylers: [{ visibility: 'off' }]
+    },
+    {
+        featureType: 'road',
+        elementType: 'labels',
+        stylers: [{ visibility: 'off' }]
+    },
+    {
+        featureType: 'administrative.neighborhood',
+        elementType: 'labels.text.fill',
+        stylers: [{ visibility: 'off' }]
+    },
+    {
+        featureType: 'water',
+        elementType: 'labels.text.fill',
+        stylers: [{ visibility: 'off' }]
+    }
+];
 const Map: React.FC = () => {
     const [mapCenter, setMapCenter] = useState<{ lat: number; lng: number }>({ lat: -3.745, lng: -38.523 });
     const [places, setPlaces] = useState<google.maps.places.PlaceResult[]>([]);
@@ -77,18 +105,25 @@ const Map: React.FC = () => {
 
     return (
         <div className="map-container">
+            <div className="filter-panel-container">
             <FilterPanel
                 radius={radius}
                 placeType={placeType}
                 onRadiusChange={setRadius}
-                onPlaceTypeChange={setPlaceType} // Прямое присвоение функции изменения состояния placeType
+                onPlaceTypeChange={setPlaceType}
             />
+            </div>
             <LoadScript googleMapsApiKey="AIzaSyDtPwhgu3_KQas7DTT2CuRqCqTu3a3PfFU" libraries={['places']}>
                 <GoogleMap
                     mapContainerStyle={{ width: '100%', height: '100vh' }}
                     center={mapCenter}
                     zoom={14}
                     onLoad={onLoad}
+                    options={{
+                            disableDefaultUI: true,
+                            mapTypeControl: false,
+                            styles: mapStyles
+                    }}
                 >
                     {directions && <DirectionsRenderer directions={directions} />}
                     {places.map((place) => (
