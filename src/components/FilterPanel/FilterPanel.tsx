@@ -1,6 +1,7 @@
 import React from 'react';
-import { PlaceType } from "../Map/Map";
+import {PlaceType } from "../Map/Map";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {placeTypes} from   '../../constans';
 
 type FilterPanelProps = {
     radius: number;
@@ -20,6 +21,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ radius, placeType, onRadiusCh
         onPlaceTypeChange(value);
     };
 
+    // @ts-ignore
     return (
         <div className="card filter-panel-container">
             <div className="card-body">
@@ -31,9 +33,9 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ radius, placeType, onRadiusCh
                 <div className="form-group">
                     <label>Тип заведения</label>
                     <select className="form-control" value={placeType} onChange={handlePlaceTypeChange}>
-                        <option value="restaurant">Ресторан</option>
-                        <option value="museum">Музей</option>
-                        <option value="park">Парк</option>
+                        {Object.entries(placeTypes).map(([key, value]) => (
+                            <option value={key}>{value}</option>
+                        ))}
                     </select>
                 </div>
             </div>

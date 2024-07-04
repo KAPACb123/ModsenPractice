@@ -3,48 +3,21 @@ import { GoogleMap, LoadScript, Marker, InfoWindow, DirectionsRenderer} from '@r
 import { fetchNearbyPlaces } from '../../utils/services/placesService';
 import PlaceDetails from '../PlaceDetails/PlaceDetails';
 import FilterPanel from '../FilterPanel/FilterPanel';
-import restaurantMarker from '../../assets/icons/food.png';
-import parkMarker from '../../assets/icons/nature.png';
-import museumMarker from '../../assets/icons/culture.png';
+import {icons} from '../../assets/icons';
+import {mapStyles} from '../../constans'
 import './Map.css';
 
 
-export type PlaceType = 'restaurant' | 'museum' | 'park';
+// Проверяем, что значения иконок являются строками
+type IconType = typeof icons[keyof typeof icons];
 
-const categoryIconMap: { [key: string]: string } = {
-    restaurant: restaurantMarker,
-    park: parkMarker,
-    museum: museumMarker,
-};
+// Добавляем проверку типа на значения иконок
+export type PlaceType = keyof typeof icons & string;
 
-const mapStyles = [
-    {
-        featureType: 'poi',
-        elementType: 'labels',
-        stylers: [{ visibility: 'off' }]
-    },
-    {
-        featureType: 'transit.station',
-        elementType: 'labels.icon',
-        stylers: [{ visibility: 'off' }]
-    },
-    {
-        featureType: 'road',
-        elementType: 'labels',
-        stylers: [{ visibility: 'off' }]
-    },
-    {
-        featureType: 'administrative.neighborhood',
-        elementType: 'labels.text.fill',
-        stylers: [{ visibility: 'off' }]
-    },
-    {
-        featureType: 'water',
-        elementType: 'labels.text.fill',
-        stylers: [{ visibility: 'off' }]
-    }
-];
+
 const Map: React.FC = () => {
+    const googleMapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+    console.log(googleMapsApiKey)
     const [mapCenter, setMapCenter] = useState<{ lat: number; lng: number }>({ lat: -3.745, lng: -38.523 });
     const [places, setPlaces] = useState<google.maps.places.PlaceResult[]>([]);
     const [selectedPlace, setSelectedPlace] = useState<google.maps.places.PlaceResult | null>(null);
@@ -94,7 +67,7 @@ const Map: React.FC = () => {
             });
         }
     };
-
+    const handleGetRouteCurried = (place:  google.maps.places.PlaceResult)  => () => handleGetRoute(place);
 
 
     useEffect(() => {
@@ -113,7 +86,7 @@ const Map: React.FC = () => {
                 onPlaceTypeChange={setPlaceType}
             />
             </div>
-            <LoadScript googleMapsApiKey="AIzaSyDtPwhgu3_KQas7DTT2CuRqCqTu3a3PfFU" libraries={['places']}>
+            <LoadScript googleMapsApiKey={googleMapsApiKey ? googleMapsApiKey : ''} libraries={['places']}>
                 <GoogleMap
                     mapContainerStyle={{ width: '100%', height: '100vh' }}
                     center={mapCenter}
@@ -132,7 +105,7 @@ const Map: React.FC = () => {
                             position={{ lat: place.geometry?.location?.lat() || 0, lng: place.geometry?.location?.lng() || 0 }}
                             onClick={() => setSelectedPlace(place)}
                             icon={{
-                                url: categoryIconMap[place.types?.[0] || ''] || '',
+                                url: icons[place.types?.[0] || ''] || '',
                                 scaledSize: new window.google.maps.Size(30, 30)
                             }}
                         />
@@ -145,7 +118,7 @@ const Map: React.FC = () => {
                         >
                             <div>
                                 <PlaceDetails place={selectedPlace} />
-                                <button onClick={() => handleGetRoute(selectedPlace)}>Простроить путь</button>
+                                <button onClick={handleGetRouteCurried(selectedPlace)}>Простроить путь</button>
                             </div>
                         </InfoWindow>
                     )}
