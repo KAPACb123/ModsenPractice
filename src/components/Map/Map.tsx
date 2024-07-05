@@ -8,16 +8,10 @@ import {mapStyles} from '../../constans'
 import './Map.css';
 
 
-// Проверяем, что значения иконок являются строками
-type IconType = typeof icons[keyof typeof icons];
-
-// Добавляем проверку типа на значения иконок
 export type PlaceType = keyof typeof icons & string;
-
 
 const Map: React.FC = () => {
     const googleMapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
-    console.log(googleMapsApiKey)
     const [mapCenter, setMapCenter] = useState<{ lat: number; lng: number }>({ lat: -3.745, lng: -38.523 });
     const [places, setPlaces] = useState<google.maps.places.PlaceResult[]>([]);
     const [selectedPlace, setSelectedPlace] = useState<google.maps.places.PlaceResult | null>(null);
@@ -110,11 +104,19 @@ const Map: React.FC = () => {
                             }}
                         />
                     ))}
-
+                    {mapCenter && (
+                        <Marker
+                            key={'map_center'}
+                            position={mapCenter}
+                            icon={{
+                                url: icons['myMarker'],
+                            }}
+                        />
+                    )}
                     {selectedPlace && (
                         <InfoWindow
                             position={{ lat: selectedPlace.geometry?.location?.lat() || 0, lng: selectedPlace.geometry?.location?.lng() || 0 }}
-                            onCloseClick={() => setSelectedPlace(null)}
+                            onCloseClick={() =>  (null)}
                         >
                             <div>
                                 <PlaceDetails place={selectedPlace} />

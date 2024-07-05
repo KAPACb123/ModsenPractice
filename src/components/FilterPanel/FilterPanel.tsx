@@ -1,7 +1,8 @@
 import React from 'react';
-import {PlaceType } from "../Map/Map";
+import { PlaceType } from "../Map/Map";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {placeTypes} from   '../../constans';
+import { placeTypes } from '../../constans';
+import './FilterPanel.css'
 
 type FilterPanelProps = {
     radius: number;
@@ -16,12 +17,10 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ radius, placeType, onRadiusCh
         onRadiusChange(value);
     };
 
-    const handlePlaceTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const value = e.target.value as PlaceType;
-        onPlaceTypeChange(value);
+    const handlePlaceTypeChange = (placeType: PlaceType) => {
+        onPlaceTypeChange(placeType);
     };
 
-    // @ts-ignore
     return (
         <div className="card filter-panel-container">
             <div className="card-body">
@@ -32,11 +31,18 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ radius, placeType, onRadiusCh
                 </div>
                 <div className="form-group">
                     <label>Тип заведения</label>
-                    <select className="form-control" value={placeType} onChange={handlePlaceTypeChange}>
+                    <div className="list-group scroll-list">
                         {Object.entries(placeTypes).map(([key, value]) => (
-                            <option value={key}>{value}</option>
+                            <div
+                                key={key}
+                                className={`list-group-item ${placeType === key ? 'active' : ''}`}
+                                onClick={() => handlePlaceTypeChange(key as PlaceType)}
+                                style={{ cursor: 'pointer' }}
+                            >
+                                {value}
+                            </div>
                         ))}
-                    </select>
+                    </div>
                 </div>
             </div>
         </div>

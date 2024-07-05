@@ -31,3 +31,4 @@ export const placeTypes : { [key: string]: string } = {
     park: 'Парк',
     bank: 'Банк',
 }
+
