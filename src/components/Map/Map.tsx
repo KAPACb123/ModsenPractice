@@ -14,6 +14,7 @@ const Map: React.FC = () => {
     const googleMapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
     const [mapCenter, setMapCenter] = useState<{ lat: number; lng: number }>({ lat: -3.745, lng: -38.523 });
     const [places, setPlaces] = useState<google.maps.places.PlaceResult[]>([]);
+    const [searchPlaces, setSearchPlaces] = useState<google.maps.places.PlaceResult[]>([]);
     const [selectedPlace, setSelectedPlace] = useState<google.maps.places.PlaceResult | null>(null);
     const mapRef = useRef<google.maps.Map | null>(null);
     const [radius, setRadius] = useState<number>(1000);
@@ -62,7 +63,21 @@ const Map: React.FC = () => {
         }
     };
     const handleGetRouteCurried = (place:  google.maps.places.PlaceResult)  => () => handleGetRoute(place);
+    const handleSearch = (query: string) => {
+        if (!mapRef.current) return;
+        const service = new google.maps.places.PlacesService(mapRef.current);
+        const request = {
+            query,
+            fields: ['name', 'geometry'],
+            locationBias: mapCenter,
+        };
 
+        service.textSearch(request, (results, status) => {
+            if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+                setSearchPlaces(results);
+            }
+        });
+    };
 
     useEffect(() => {
         if (mapRef.current) {
@@ -74,6 +89,7 @@ const Map: React.FC = () => {
         <div className="map-container">
             <div className="filter-panel-container">
             <FilterPanel
+                onSearch={handleSearch}
                 radius={radius}
                 placeType={placeType}
                 onRadiusChange={setRadius}
@@ -124,6 +140,20 @@ const Map: React.FC = () => {
                             </div>
                         </InfoWindow>
                     )}
+                    {searchPlaces.map((place) => (
+                        <Marker
+                            key={place.place_id}
+                            onClick={() => setSelectedPlace(place)}
+                            position={{
+                                lat: place.geometry?.location?.lat() || 0,
+                                lng: place.geometry?.location?.lng() || 0,
+                            }}
+                            icon={{
+                                url: icons['searchPlace' || ''] || '',
+                                scaledSize: new window.google.maps.Size(30, 30),
+                            }}
+                        />
+                    ))}
                 </GoogleMap>
             </LoadScript>
         </div>
