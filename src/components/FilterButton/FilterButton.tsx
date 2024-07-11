@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import FilterPanel, {FilterPanelProps} from '../FilterPanel/FilterPanel';
 import './FilterButton.css'
+
+let isMobile = true;
+if (window.innerWidth < 560)
+    isMobile = false;
+
 const FilterButton: React.FC<FilterPanelProps>  = ({ radius, placeType, onRadiusChange, onPlaceTypeChange, onSearch }) => {
-
-
-    const [showFilter, setShowFilter] = useState(true); // Состояние для отслеживания видимости фильтра
-
+    const [showFilter, setShowFilter] = useState(isMobile); // Состояние для отслеживания видимости фильтра
+   
     const toggleFilter = () => {
         setShowFilter(!showFilter);
     };
