@@ -17,7 +17,7 @@ const Map: React.FC = () => {
     const [searchPlaces, setSearchPlaces] = useState<google.maps.places.PlaceResult[]>([]);
     const [selectedPlace, setSelectedPlace] = useState<google.maps.places.PlaceResult | null>(null);
     const mapRef = useRef<google.maps.Map | null>(null);
-    const [radius, setRadius] = useState<number>(1000);
+    const [radius, setRadius] = useState<number>(1);
     const [placeType, setPlaceType] = useState<PlaceType>('restaurant');
     const [directions, setDirections] = useState<google.maps.DirectionsResult | null>(null);
     const [origin, setOrigin] = useState<google.maps.LatLngLiteral | null>(null);

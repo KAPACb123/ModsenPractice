@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { placeTypes } from '../../constans';
 import './FilterPanel.css'
 import SearchBox from "../SearchBox/SearchBox";
+import {icons} from "../../assets/icons";
 
 type FilterPanelProps = {
     radius: number;
@@ -29,7 +30,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ radius, placeType, onRadiusCh
                 <SearchBox onSearch={onSearch}/>
                 <h2 className="card-title">Фильтры</h2>
                 <div className="form-group">
-                    <label>Радиус поиска (м)</label>
+                    <label>Радиус поиска (км)</label>
                     <input type="number" className="form-control" value={radius} onChange={handleRadiusChange} />
                 </div>
                 <div className="form-group">
@@ -42,6 +43,12 @@ const FilterPanel: React.FC<FilterPanelProps> = ({ radius, placeType, onRadiusCh
                                 onClick={() => handlePlaceTypeChange(key as PlaceType)}
                                 style={{ cursor: 'pointer' }}
                             >
+                                <img
+                                    src={icons[key]}
+                                    alt={key}
+                                    className="icon m-2"
+                                    style={{ width: '30px', height: '30px' }}
+                                />
                                 {value}
                             </div>
                         ))}

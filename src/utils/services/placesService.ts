@@ -12,7 +12,7 @@ export const fetchNearbyPlaces = (
 
         const request: google.maps.places.PlaceSearchRequest = {
             location: center,
-            radius: radius,
+            radius: radius*1000,
             type: type
         };
 

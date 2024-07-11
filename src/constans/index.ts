@@ -1,3 +1,4 @@
+
 export const mapStyles = [
     {
         featureType: 'poi',
@@ -30,5 +31,10 @@ export const placeTypes : { [key: string]: string } = {
     museum: 'Музей',
     park: 'Парк',
     bank: 'Банк',
+    gas_station: 'Заправка',
+    supermarket: 'Магазин',
+    stadium: 'Стадион',
+    bicycle_store: 'Велосипеды',
+    car_dealer: 'Автомобили'
 }
 
