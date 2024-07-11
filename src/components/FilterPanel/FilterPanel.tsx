@@ -6,15 +6,17 @@ import './FilterPanel.css'
 import SearchBox from "../SearchBox/SearchBox";
 import {icons} from "../../assets/icons";
 
-type FilterPanelProps = {
+
+export type FilterPanelProps = {
     radius: number;
     placeType: PlaceType;
     onRadiusChange: (value: number) => void;
     onPlaceTypeChange: (value: PlaceType) => void;
     onSearch: (query: string) => void;
+
 };
 
-const FilterPanel: React.FC<FilterPanelProps> = ({ radius, placeType, onRadiusChange, onPlaceTypeChange, onSearch }) => {
+const FilterPanel: React.FC<FilterPanelProps> = ({ radius, placeType, onRadiusChange, onPlaceTypeChange, onSearch}) => {
     const handleRadiusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = parseInt(e.target.value, 10);
         onRadiusChange(value);

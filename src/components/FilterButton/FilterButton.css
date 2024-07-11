@@ -1,0 +1,14 @@
+
+.btn-primary.control {
+    display: none;
+}
+
+@media (max-width: 560px) {
+    .btn-primary.control {
+        width: 100vw;
+        display: block;
+    }
+    .filter-content-container.invisible {
+        display: none;
+    }
+}

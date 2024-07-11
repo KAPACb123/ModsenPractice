@@ -1,4 +1,14 @@
 .scroll-list {
-    max-height: 350px;
+    max-height: 40vh;
     overflow-y: auto;
+}
+
+.filter-panel-container{
+    height: 100vh
+}
+
+@media (max-width: 560px) {
+    .filter-panel-container {
+       height:80vh
+    }
 }

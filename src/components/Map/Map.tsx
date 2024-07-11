@@ -6,6 +6,7 @@ import FilterPanel from '../FilterPanel/FilterPanel';
 import {icons} from '../../assets/icons';
 import {mapStyles} from '../../constans'
 import './Map.css';
+import FilterButton from "../FilterButton/FilterButton";
 
 
 export type PlaceType = keyof typeof icons & string;
@@ -87,8 +88,8 @@ const Map: React.FC = () => {
 
     return (
         <div className="map-container">
-            <div className="filter-panel-container">
-            <FilterPanel
+            <div className="filter-container">
+            <FilterButton
                 onSearch={handleSearch}
                 radius={radius}
                 placeType={placeType}
